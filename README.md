@@ -67,7 +67,7 @@ stdlib `map[uint64]interface{}`,
 [tidwall/celltree](https://github.com/tidwall/celltree).
 
 ```
-$ go test
+$ go test -bench .
 
 -- spanmap --
 set/sequential 1,000,000 ops in 65ms, 15,402,400/sec, 64 ns/op

@@ -52,8 +52,8 @@ func TestMap(t *testing.T) {
 		t.Fatalf("expected '%v', got '%v'", N, m.Len())
 	}
 	// check the min/max
-	if m.MinIndex() != 0 || m.MaxIndex() != uint64(N-1) {
-		t.Fatalf("expected '%v/%v', got '%v/%v'", 0, N-1, m.MinIndex(), m.MaxIndex())
+	if m.Min() != 0 || m.Max() != uint64(N-1) {
+		t.Fatalf("expected '%v/%v', got '%v/%v'", 0, N-1, m.Min(), m.Max())
 	}
 	for i := 0; i < N; i += 2 {
 		value := m.Delete(uint64(i)).(int)
@@ -64,8 +64,8 @@ func TestMap(t *testing.T) {
 	if m.Len() != N/2 {
 		t.Fatalf("expected '%v', got '%v'", N/2, m.Len())
 	}
-	if m.MinIndex() != 1 || m.MaxIndex() != uint64(N-1) {
-		t.Fatalf("expected '%v/%v', got '%v/%v'", 1, N-1, m.MinIndex(), m.MaxIndex())
+	if m.Min() != 1 || m.Max() != uint64(N-1) {
+		t.Fatalf("expected '%v/%v', got '%v/%v'", 1, N-1, m.Min(), m.Max())
 	}
 	for i := 0; i < N; i++ {
 		v := m.Get(uint64(i))
@@ -107,9 +107,9 @@ func TestMap(t *testing.T) {
 				t.Fatalf("expected '%v', got '%v'", i, v.(uint64))
 			}
 			if i == N-1 {
-				if m.MinIndex() != 0 || m.MaxIndex() != 0 {
+				if m.Min() != 0 || m.Max() != 0 {
 					t.Fatalf("expected '%v/%v', got '%v/%v'",
-						0, 0, m.MinIndex(), m.MaxIndex())
+						0, 0, m.Min(), m.Max())
 				}
 			} else {
 				n--
@@ -119,7 +119,7 @@ func TestMap(t *testing.T) {
 				// check the entire list again for correctness
 				for i := 0; i < N; i++ {
 					v := m.Get(uint64(i))
-					if i%2 == 0 || uint64(i) < m.MinIndex() {
+					if i%2 == 0 || uint64(i) < m.Min() {
 						if v != nil {
 							t.Fatalf("expected nil, got '%v'", v)
 						}
@@ -130,16 +130,16 @@ func TestMap(t *testing.T) {
 					}
 				}
 
-				if m.MinIndex() != uint64(i)+2 || m.MaxIndex() != uint64(N-1) {
+				if m.Min() != uint64(i)+2 || m.Max() != uint64(N-1) {
 					t.Fatalf("expected '%v/%v', got '%v/%v'",
-						uint64(i)+2, N-1, m.MinIndex(), m.MaxIndex())
+						uint64(i)+2, N-1, m.Min(), m.Max())
 				}
 			}
 		}
 	}
-	if m.MinIndex() != 0 || m.MaxIndex() != 0 {
+	if m.Min() != 0 || m.Max() != 0 {
 		t.Fatalf("expected '%v/%v', got '%v/%v'",
-			0, 0, m.MinIndex(), m.MaxIndex())
+			0, 0, m.Min(), m.Max())
 	}
 	if m.Len() != 0 {
 		t.Fatalf("expected '%v', got '%v'", 0, m.Len())
@@ -157,8 +157,8 @@ func TestMap(t *testing.T) {
 			t.Fatalf("expected '%v', got '%v'", i, value)
 		}
 	}
-	if m.MinIndex() != 0 || m.MaxIndex() != uint64(N-2) {
-		t.Fatalf("expected '%v/%v', got '%v/%v'", 0, N-2, m.MinIndex(), m.MaxIndex())
+	if m.Min() != 0 || m.Max() != uint64(N-2) {
+		t.Fatalf("expected '%v/%v', got '%v/%v'", 0, N-2, m.Min(), m.Max())
 	}
 
 	for i := N - 1; i >= 0; i-- {
@@ -201,9 +201,9 @@ func TestMap(t *testing.T) {
 				t.Fatalf("expected '%v', got '%v'", i, v.(uint64))
 			}
 			if i == 0 {
-				if m.MinIndex() != 0 || m.MaxIndex() != 0 {
+				if m.Min() != 0 || m.Max() != 0 {
 					t.Fatalf("expected '%v/%v', got '%v/%v'",
-						0, 0, m.MinIndex(), m.MaxIndex())
+						0, 0, m.Min(), m.Max())
 				}
 			} else {
 				n--
@@ -213,7 +213,7 @@ func TestMap(t *testing.T) {
 				// check the entire list again for correctness
 				for i := N - 1; i >= 0; i-- {
 					v := m.Get(uint64(i))
-					if i%2 == 1 || uint64(i) > m.MaxIndex() {
+					if i%2 == 1 || uint64(i) > m.Max() {
 						if v != nil {
 							t.Fatalf("expected nil, got '%v'", v)
 						}
@@ -223,16 +223,16 @@ func TestMap(t *testing.T) {
 						}
 					}
 				}
-				if m.MinIndex() != 0 || m.MaxIndex() != uint64(i-2) {
+				if m.Min() != 0 || m.Max() != uint64(i-2) {
 					t.Fatalf("expected '%v/%v', got '%v/%v'",
-						0, i-3, m.MinIndex(), m.MaxIndex())
+						0, i-3, m.Min(), m.Max())
 				}
 			}
 		}
 	}
-	if m.MinIndex() != 0 || m.MaxIndex() != 0 {
+	if m.Min() != 0 || m.Max() != 0 {
 		t.Fatalf("expected '%v/%v', got '%v/%v'",
-			0, 0, m.MinIndex(), m.MaxIndex())
+			0, 0, m.Min(), m.Max())
 	}
 	if m.Len() != 0 {
 		t.Fatalf("expected '%v', got '%v'", 0, m.Len())
@@ -246,7 +246,8 @@ func (item btreeItem) Less(other btree.Item) bool {
 	return uint64(item) < uint64(other.(btreeItem))
 }
 
-func TestBench(t *testing.T) {
+func BenchmarkCompare(b *testing.B) {
+	defer b.Skip()
 	N := 1000000
 	ints := make([]uint64, 0, N)
 	for _, i := range rand.Perm(N) {

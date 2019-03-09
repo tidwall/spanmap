@@ -139,13 +139,13 @@ func (m *Map) Len() int {
 	return m.len
 }
 
-// MinIndex returns the minimum index
-func (m *Map) MinIndex() uint64 {
+// Min returns the minimum index
+func (m *Map) Min() uint64 {
 	return m.min
 }
 
-// MaxIndex returns the maximum index
-func (m *Map) MaxIndex() uint64 {
+// Max returns the maximum index
+func (m *Map) Max() uint64 {
 	return m.max
 }
 
