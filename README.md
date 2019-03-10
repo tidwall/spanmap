@@ -14,6 +14,8 @@ any starting index, dynamically grow, and contain small gaps.
 *This collection should not be used for data where the indexes have
 random properties or very large gaps.*
 
+<img src="anim/anim.gif" height="140">
+
 # Getting Started
 
 ### Installing
