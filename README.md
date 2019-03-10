@@ -48,8 +48,8 @@ func (m *Map) Set(index uint64, value interface{}) interface{}
 func (m *Map) Get(index uint64) interface{}
 func (m *Map) Delete(index uint64) interface{}
 func (m *Map) Len() int
-func (m *Map) MinIndex() uint64
-func (m *Map) MaxIndex() uint64
+func (m *Map) Min() uint64
+func (m *Map) Max() uint64
 ```
 
 Outputs:
