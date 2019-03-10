@@ -41,6 +41,15 @@ for i := m.Min(); i <= m.Max(); i++ {
 }
 ```
 
+Outputs:
+
+```
+910001 1
+910002 2
+910003 3
+910004 4
+```
+
 ## All operations
 
 ```go
@@ -52,14 +61,6 @@ func (m *Map) Min() uint64
 func (m *Map) Max() uint64
 ```
 
-Outputs:
-
-```
-910001 1
-910002 2
-910003 3
-910004 4
-```
 
 ## Performance
 
