@@ -148,15 +148,3 @@ func (m *Map) Min() uint64 {
 func (m *Map) Max() uint64 {
 	return m.max
 }
-
-// func printLog(l *Map) {
-// 	fmt.Printf("%02d-%02d [ ", l.first, l.last)
-// 	for i := 0; i < len(l.items); i++ {
-// 		if l.items[i].item == nil {
-// 			fmt.Printf("-- ")
-// 		} else {
-// 			fmt.Printf("%02d ", l.items[i].index)
-// 		}
-// 	}
-// 	println("]")
-// }
