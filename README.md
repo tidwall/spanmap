@@ -1,5 +1,5 @@
-# `spanmap` 
-[![Build Status](https://img.shields.io/travis/tidwall/spanmap.svg?style=flat-square)](https://travis-ci.org/tidwall/spanmap)
+# spanmap
+
 [![GoDoc](https://img.shields.io/badge/api-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/tidwall/spanmap)
 [![Code Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg?style=flat-square)](http://gocover.io/github.com/tidwall/spanmap)
 
